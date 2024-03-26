@@ -1,4 +1,8 @@
 import RPi.GPIO as GPIO
+import logging
+
+
+logger = logging.getLogger('roomie')
 
 
 def setup_button(callback):
@@ -10,5 +14,5 @@ def setup_button(callback):
 
     # Add event listener for button press
     GPIO.add_event_detect(button_pin, GPIO.RISING, callback=callback, bouncetime=300)
-    print(f'add button listener pin: {button_pin}')
+    logger.debug(f'add button listener pin: {button_pin}')
 
