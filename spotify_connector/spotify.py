@@ -29,7 +29,7 @@ def get_spotify_device_id(name: str):
 def get_device():
     global g_device_id
     hostname = socket.gethostname()
-    logger.debug("device Hostname:", hostname)
+    logger.debug(f"device Hostname: {hostname}")
 
     device_id = get_spotify_device_id(hostname)
     if device_id is None:
