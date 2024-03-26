@@ -3,7 +3,6 @@ import logging
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import socket
-import subprocess
 import time
 from robotics.led import *
 import logging
@@ -18,8 +17,9 @@ disney_baby_uri = "0O2NkHCJE31kRyK7lX58A6"
 
 
 def get_spotify_device_id(name: str):
+    logger.debug(f'searching for device name: {name}')
     for device in sp.devices()['devices']:
-        logger.debug(f'device name: {device["name"]}')
+        logger.debug(f'current available device name: {device["name"]}')
         if device['name'] == name:
             return device['id']
 
@@ -33,11 +33,9 @@ def get_device():
 
     device_id = get_spotify_device_id(hostname)
     if device_id is None:
-        logger.debug(f"my device was not found, try open chrome")
-        # command = ['chromium-browser', '--new-window', "https://open.spotify.com/"]
-        # subprocess.Popen(command)
+        logger.debug(f"my device was not found yet")
         while device_id is None:
-            device_id = get_spotify_device_id('Web Player (Chrome)')
+            device_id = get_spotify_device_id(hostname)
             toggle_led()
             time.sleep(0.5)
 
