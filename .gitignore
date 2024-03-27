@@ -6,3 +6,7 @@ sync_raspi.sh
 spotify_connector/.cache
 spotify_connector/milab/
 entrypoint.sh
+*/__pycache__
+.cache
+log/
+.vscode/
