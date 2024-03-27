@@ -36,8 +36,8 @@ def get_device():
         logger.debug(f"my device was not found yet")
         while device_id is None:
             device_id = get_spotify_device_id(hostname)
-            toggle_led()
-            time.sleep(0.5)
+            toggle_pwm_led(duration=3, hz=12)
+
 
     g_device_id = device_id
     logger.debug(f"device is id: {hostname}")
